@@ -4,7 +4,116 @@
 {% block content %}
 <div class="p-5 text-center bg-light">
     <h1 class="mb-3">GameTime</h1>
-    <h4 class="mb-3">Бесплатная история игрового времени Steam для любого профиля</h4>
+    <h4 class="mb-3">Бесплатная история и статистика игрового времени Steam для любого профиля</h4>
     <a class="btn btn-primary" href="" role="button">Приступить</a>
 </div>
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-4">
+            <canvas id="myChart" width="100" height="100"></canvas>
+        </div>
+        <div class="col-4">
+            <canvas id="myChart2" width="100" height="100"></canvas>
+        </div>
+        <div class="col-4">
+            <canvas id="myChart3" width="100" height="100"></canvas>
+        </div>
+     </div>
+</div>
+<script>
+var ctx = document.getElementById('myChart');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Игрок 1', 'Игрок 2', 'Игрок 3'],
+        datasets: [{
+            label: 'Количество часов в CS:GO',
+            data: [403, 102, 484],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.6)',
+                'rgba(54, 162, 235, 0.6)',
+                'rgba(255, 206, 86, 0.6)',
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+            ],
+            borderWidth: 1
+        },
+        {
+            label: 'Количество часов в Dota',
+            data: [33, 238, 48],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0)',
+                'rgba(54, 162, 235, 0)',
+                'rgba(255, 206, 86, 0)',
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+var ctx2 = document.getElementById('myChart2');
+var myChart2 = new Chart(ctx2, {
+    type: 'line',
+    data: {
+        labels: ['10 Января', '11 Января', '12 Января', '13 Января', '14 Января', '15 Января'],
+        datasets: [{
+            label: 'Игрок 1',
+            data: [38, 47, 54, 60, 63, 65],
+            backgroundColor: 'rgba(255, 99, 132, 0.6)',
+            borderColor: 'rgba(255, 99, 132, 1)',
+            borderWidth: 1
+        },
+        {
+            label: 'Игрок 2',
+            data: [34, 42, 42, 50, 59, 68],
+            backgroundColor: 'rgba(54, 162, 235, 0.6)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: false,
+            }
+        }
+    }
+});
+var ctx3 = document.getElementById('myChart3');
+var myChart3 = new Chart(ctx3, {
+    type: 'radar',
+    data: {
+        labels: ['Minecraft', 'Terraria', 'Dark Souls 3', 'Yakuza 0', 'Dying Light'],
+        datasets: [{
+            label: 'Игрок 1',
+            data: [38, 147, 60, 15, 132],
+            backgroundColor: 'rgba(255, 99, 132, 0.6)',
+            borderColor: 'rgba(255, 99, 132, 1)',
+            borderWidth: 1
+        },
+        {
+            label: 'Игрок 2',
+            data: [140, 42, 12, 59, 68],
+            backgroundColor: 'rgba(54, 162, 235, 0.6)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1
+        }]
+    },
+});
+
+</script>
 {% endblock %}
