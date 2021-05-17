@@ -7,15 +7,15 @@
     <h4 class="mb-3">Бесплатная история и статистика игрового времени Steam для любого профиля</h4>
     <a class="btn btn-primary" href="" role="button">Приступить</a>
 </div>
-<div class="container">
-    <div class="row mt-5">
-        <div class="col-4">
+<div class="container-fluid">
+    <div class="flex-row d-flex flex-wrap justify-content-center mt-5 ms-1 me-1">
+        <div class="col-md-3 col-sm-12 ms-1 me-1">
             <canvas id="myChart" width="100" height="100"></canvas>
         </div>
-        <div class="col-4">
+        <div class="col-md-3 col-sm-12 ms-1 me-1">
             <canvas id="myChart2" width="100" height="100"></canvas>
         </div>
-        <div class="col-4">
+        <div class="col-md-3 col-sm-12 ms-1 me-1">
             <canvas id="myChart3" width="100" height="100"></canvas>
         </div>
      </div>
@@ -39,7 +39,7 @@ var myChart = new Chart(ctx, {
                 'rgba(54, 162, 235, 1)',
                 'rgba(255, 206, 86, 1)',
             ],
-            borderWidth: 1
+            borderWidth: 2
         },
         {
             label: 'Количество часов в Dota',
@@ -54,7 +54,7 @@ var myChart = new Chart(ctx, {
                 'rgba(54, 162, 235, 1)',
                 'rgba(255, 206, 86, 1)',
             ],
-            borderWidth: 1
+            borderWidth: 2
         }]
     },
     options: {
@@ -75,14 +75,14 @@ var myChart2 = new Chart(ctx2, {
             data: [38, 47, 54, 60, 63, 65],
             backgroundColor: 'rgba(255, 99, 132, 0.6)',
             borderColor: 'rgba(255, 99, 132, 1)',
-            borderWidth: 1
+            borderWidth: 2
         },
         {
             label: 'Игрок 2',
             data: [34, 42, 42, 50, 59, 68],
             backgroundColor: 'rgba(54, 162, 235, 0.6)',
             borderColor: 'rgba(54, 162, 235, 1)',
-            borderWidth: 1
+            borderWidth: 2
         }]
     },
     options: {
@@ -103,14 +103,14 @@ var myChart3 = new Chart(ctx3, {
             data: [38, 147, 60, 15, 132],
             backgroundColor: 'rgba(255, 99, 132, 0.6)',
             borderColor: 'rgba(255, 99, 132, 1)',
-            borderWidth: 1
+            borderWidth: 2
         },
         {
             label: 'Игрок 2',
             data: [140, 42, 12, 59, 68],
             backgroundColor: 'rgba(54, 162, 235, 0.6)',
             borderColor: 'rgba(54, 162, 235, 1)',
-            borderWidth: 1
+            borderWidth: 2
         }]
     },
 });

@@ -38,7 +38,7 @@
     <!-- Collapsible wrapper -->
 
     <!-- Right elements -->
-    <ul class="d-flex align-items-center navbar-nav">
+    <ul class="align-items-center navbar-nav flex-row">
         {% if user.is_authenticated %}
       <!-- Avatar -->
         <li class="nav-item dropdown">
@@ -75,18 +75,24 @@
       </ul>
         </li>
         {% else %}
-        <a role="button" class="btn btn-link px-3 me-2 text-theme">
+      <li class="nav-item">
+        <a role="button" class="btn btn-link px-3 me-2 text-theme nav-item d-flex align-items-center">
           Авторизация
         </a>
-        <a role="button" class="btn btn-primary btn-theme me-3">
+        </li>
+      <li class="nav-item">
+        <a role="button" class="btn btn-primary btn-theme me-3 nav-item d-flex align-items-center">
           Регистрация
         </a>
+      </li>
+      <li class="nav-item">
         <a
-          class="btn btn-dark px-3"
+          class="btn btn-dark px-3 nav-item d-flex align-items-center"
           href="https://steamcommunity.com"
           role="button"
           ><i class="fab fa-steam"></i
         ></a>
+      </li>
         {% endif %}
 
     </ul>
