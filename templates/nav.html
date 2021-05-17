@@ -1,0 +1,96 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <!-- Container wrapper -->
+  <div class="container">
+    <!-- Toggle button -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-mdb-toggle="collapse"
+      data-mdb-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Collapsible wrapper -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- Navbar brand -->
+      <span class="navbar-brand mb-0 h1">GameTime</span>
+      <!-- Left links -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Главная</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Настройки</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Построить график</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Подписка</a>
+        </li>
+      </ul>
+      <!-- Left links -->
+    </div>
+    <!-- Collapsible wrapper -->
+
+    <!-- Right elements -->
+    <ul class="d-flex align-items-center navbar-nav">
+        {% if user.is_authenticated %}
+      <!-- Avatar -->
+        <li class="nav-item dropdown">
+      <a
+        class="dropdown-toggle d-flex align-items-center nav-link"
+        href="#"
+        id="navbarDropdownMenuLink"
+        role="button"
+        data-mdb-toggle="dropdown"
+        aria-expanded="false"
+      >
+        <img
+          src="https://mdbootstrap.com/img/new/avatars/2.jpg"
+          class="rounded-circle"
+          height="30"
+          alt=""
+          loading="lazy"
+        />
+          <span class="ms-2 me-1">Аккаунт</span>
+      </a>
+      <ul
+        class="dropdown-menu dropdown-menu-end"
+        aria-labelledby="navbarDropdownMenuLink"
+      >
+        <li>
+          <a class="dropdown-item" href="#">Настройки списка</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">Настройки аккаунта</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">Выход</a>
+        </li>
+      </ul>
+        </li>
+        {% else %}
+        <a role="button" class="btn btn-link px-3 me-2 text-theme">
+          Авторизация
+        </a>
+        <a role="button" class="btn btn-primary btn-theme me-3">
+          Регистрация
+        </a>
+        <a
+          class="btn btn-dark px-3"
+          href="https://steamcommunity.com"
+          role="button"
+          ><i class="fab fa-steam"></i
+        ></a>
+        {% endif %}
+
+    </ul>
+    <!-- Right elements -->
+  </div>
+  <!-- Container wrapper -->
+</nav>
