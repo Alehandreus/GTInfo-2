@@ -1,8 +1,14 @@
-from .models import UserOnlineActivityObject
+from .models import UserOnlineActivityObject, TrackedUserObject
 from rest_framework import serializers
 
 
 class UserOnlineActivityObjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserOnlineActivityObject
-        fields = ['steam_id', 'started_playing_timestamp', 'ended_playing_timestamp', 'game_id', 'total_played']
+        fields = ['tracked_user', 'started_playing_timestamp', 'ended_playing_timestamp', 'game_id', 'total_played']
+
+
+class TrackedUserObjectSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TrackedUserObject
+        fields = ['steam_id']

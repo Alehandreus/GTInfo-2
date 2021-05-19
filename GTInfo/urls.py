@@ -16,10 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from iu_api.views import UserOnlineActivityObjectViewSet
+from iu_api.views import UserOnlineActivityObjectViewSet, TrackedUserObjectViewSet
 
 router = routers.DefaultRouter()
-router.register(r'user_online_activity_object', UserOnlineActivityObjectViewSet)
+router.register(r'user_online_activity_object', UserOnlineActivityObjectViewSet, basename="UserOnlineActivityObject")
+router.register(r'tracked_user_object', TrackedUserObjectViewSet)
 
 
 urlpatterns = [
