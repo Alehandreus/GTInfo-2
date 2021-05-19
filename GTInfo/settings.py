@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'start_page.apps.StartPageConfig',
     'subscription.apps.SubscriptionConfig',
     'visualisation.apps.VisualisationConfig',
+    'iu_api.apps.IuApiConfig',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

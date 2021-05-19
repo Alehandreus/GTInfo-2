@@ -15,9 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework import routers
+from iu_api.views import UserOnlineActivityObjectViewSet
+
+router = routers.DefaultRouter()
+router.register(r'user_online_activity_object', UserOnlineActivityObjectViewSet)
 
 
 urlpatterns = [
+    path('iu_api/', include(router.urls)),
     path('admin/', admin.site.urls),
     path('', include("start_page.urls")),
 ]
