@@ -2,5 +2,66 @@
 
 
 {% block content %}
+<div class="container">
+    <div class="m-3 mt-5 d-flex flex-row justify-content-center">
+        <h1 class="mb-3">Авторизация</h1>
+    </div>
+    <div class="row mt-5 p-3 justify-content-center">
+        <div class="col-lg-4 col-md-5 col-sm-10">
+            <form class="justify-content-center" action="/login/" method="post">
+                {% csrf_token %}
 
+                <!-- Email input -->
+                <div class="form-outline mb-4">
+                    <input type="text" id="login" class="form-control" name="login" />
+                    <label class="form-label" for="login">Логин</label>
+                </div>
+
+                <!-- Password input -->
+                <div class="form-outline mb-4">
+                    <input type="password" id="password" class="form-control" name="password"/>
+                    <label class="form-label" for="password">Пароль</label>
+                </div>
+                {% if form.password.errors %}
+                  <div class="alert alert-danger d-flex align-items-center my-3">
+                    {{ form.password.errors | first }}
+                  </div>
+                {% endif %}
+                <!-- 2 column grid layout for inline styling -->
+                <div class="row mb-4">
+                    <div class="col d-flex justify-content-center">
+                        <!-- Checkbox -->
+                        <div class="form-check">
+                            <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    id="remember_me_option"
+                                    name="remember_me_option"
+                                    checked
+                            />
+                            <label class="form-check-label" for="remember_me_option"> Запомнить меня </label>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <!-- Simple link -->
+                        <a href="#!">Забыли пароль?</a>
+                    </div>
+                </div>
+
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-primary btn-block mb-4" type="submit">Авторизация</button>
+
+                <!-- Register buttons -->
+                <div class="text-center">
+                    <p>Нет аккаунта? <a href="/register">Зарегистрируйтесь!</a></p>
+                    <p>или авторизуйтесь с помощью:</p>
+                    <button type="button" class="btn btn-black btn-floating mx-1">
+                        <i class="fab fa-steam"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}
