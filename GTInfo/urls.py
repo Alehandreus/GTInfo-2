@@ -27,4 +27,5 @@ urlpatterns = [
     path('iu_api/', include(router.urls)),
     path('admin/', admin.site.urls),
     path('', include("start_page.urls")),
+    path('', include("auth_pages.urls")),
 ]
