@@ -3,7 +3,7 @@ from django.template import loader
 from django.views import View
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import logout, login
-from .forms import LoginForm
+from .forms import LoginForm, RegistrationForm
 
 
 class LoginView(View):
@@ -45,6 +45,23 @@ class RegisterView(View):
             return HttpResponse(template.render(context, request))
         else:
             return HttpResponseRedirect("/")
+
+    def post(self, request):
+        if request.user.is_authenticated:
+            return HttpResponseRedirect("/")
+        else:
+            current_form = RegistrationForm(request.POST)
+            if current_form.is_valid():
+                user = current_form.do_registration()
+                if user is not None:
+                    login(request, user)
+                    return HttpResponseRedirect("/")
+                else:
+                    template = loader.get_template('auth_pages/register.html')
+                    return HttpResponse(template.render({'form': current_form}, request))
+            else:
+                template = loader.get_template('auth_pages/register.html')
+                return HttpResponse(template.render({'form': current_form}, request))
 
 
 class LogoutView(View):
