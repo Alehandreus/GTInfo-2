@@ -29,4 +29,6 @@ urlpatterns = [
     path('', include("start_page.urls")),
     path('', include("auth_pages.urls")),
     path('', include("account.urls")),
+    path('', include("visualisation.urls")),
+    path('', include("subscription.urls")),
 ]
