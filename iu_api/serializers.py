@@ -11,4 +11,4 @@ class UserOnlineActivityObjectSerializer(serializers.ModelSerializer):
 class TrackedUserObjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = TrackedUserObject
-        fields = ['steam_id']
+        fields = ['steam_id', 'is_premium']

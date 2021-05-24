@@ -4,6 +4,7 @@ from django.db import models
 # Каждый объект этого класса будет хранить данные об одном пользователе с его параметрами и списком игровых сессий
 class TrackedUserObject(models.Model):
     steam_id = models.IntegerField(unique=True, primary_key=True, null=False)
+    is_premium = models.BooleanField(default=False)
 
     def __str__(self):
         return str(self.steam_id)
