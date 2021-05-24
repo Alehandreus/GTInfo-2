@@ -1,5 +1,99 @@
 {% extends 'base.html' %}
 
+{% block under_js %}
+{% load static %}
+<script src="{% static 'js/account/tracking_settings.js' %}"></script>
+{% endblock %}
 
 {% block content %}
+<div class="p-5 text-center bg-light">
+    <h1 class="mb-3">Отслеживание пользователей</h1>
+    <h4 class="mb-3">Вы можете добавить до 10 отслеживаемых пользователей одновременно</h4>
+</div>
+<div class="container" id="tracked-list">
+    <div class="row m-4 justify-content-between align-items-center">
+        <div class="col-3 justify-content-center align-items-center text-center">
+            <p class="fs-3">SteamID64</p>
+        </div>
+        <div class="col-3 justify-content-center align-items-center text-center">
+            <p class="fs-3">Действие</p>
+        </div>
+    </div>
+    {% csrf_token %}
+    {% for tracked_user in tracked_list %}
+    <div class="row m-4 justify-content-between align-items-center" id="block-{{ tracked_user.steam_id }}">
+        <div class="col-3 justify-content-center align-items-center text-center">
+            <p class="fs-4" id="{{ tracked_user.steam_id }}">{{ tracked_user.steam_id }}</p>
+        </div>
+        <div class="col-3 justify-content-center align-items-center text-center">
+            <button type="button" class="btn btn-primary" onclick="delete_user({{tracked_user.steam_id}})"><i class="fas fa-minus"></i></button>
+        </div>
+    </div>
+    {% endfor %}
+    <div class="row m-4" id="add-button"><button type="button" class="btn btn-light" data-mdb-toggle="modal" data-mdb-target="#addUserModal"><i class="fas fa-plus"></i></button></div>
+</div>
+
+<div
+  class="modal fade"
+  id="addUserModal"
+  tabindex="-1"
+  aria-labelledby="addUserModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="AddUserModalLabel">Добавить пользователя</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-mdb-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+          <div class="form-outline m-3">
+              <input type="text" id="steam-id-modal" class="form-control" name="steam-id-modal" />
+              <label class="form-label" for="steam-id-modal">SteamID 64</label>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
+          Закрыть
+        </button>
+        <button type="button" class="btn btn-primary" onclick="add_user_modal_function()">Добавить</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="tooManyUsersModal"
+  tabindex="-1"
+  aria-labelledby="tooManyUsersModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="tooManyUsersModalLabel">Достигнут лимит</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-mdb-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+          <p class="m-3">Лимит на количество пользователей - 10.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
+          Закрыть
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}

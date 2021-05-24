@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 from iu_api.views import UserOnlineActivityObjectViewSet, TrackedUserObjectViewSet
+from django.conf import settings
+from django.conf.urls.static import static
 
 router = routers.DefaultRouter()
 router.register(r'user_online_activity_object', UserOnlineActivityObjectViewSet, basename="UserOnlineActivityObject")
@@ -31,4 +33,4 @@ urlpatterns = [
     path('', include("account.urls")),
     path('', include("visualisation.urls")),
     path('', include("subscription.urls")),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
