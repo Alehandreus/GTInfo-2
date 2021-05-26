@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block under_js %}
+{% load static %}
+<script src="{% static 'js/account/main_settings.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="p-5 text-center bg-light">
+    <h1 class="mb-3">Настройки аккаунта</h1>
+    <h4 class="mb-3">Основные параметры находятся здесь</h4>
+</div>
+<div class="container" id="tracked-list">
+    <div class="flex-row d-flex m-4 justify-content-center align-items-center text-center">
+        <div class="col-md-4 col-sm-12">
+        <h4 class="mb-3">Смена пароля</h4>
+            <form class="justify-content-center" action="/main_settings/" method="post">
+                {% csrf_token %}
+
+                <div class="form-outline mb-4">
+                    <input type="password" id="old_password" class="form-control" name="old_password" />
+                    <label class="form-label" for="old_password">Старый пароль</label>
+                </div>
+                {% if change_error %}
+                        <div class="alert alert-danger my-3">
+                            Текущий пароль указан неправильно
+                          </div>
+                {% endif %}
+
+                <div class="form-outline mb-4">
+                    <input type="password" id="password" class="form-control" name="password"/>
+                    <label class="form-label" for="password">Новый пароль</label>
+                </div>
+                {% if form.password_repeat.errors %}
+                  <div class="alert alert-danger d-flex align-items-center my-3">
+                    {{ form.password_repeat.errors | first }}
+                  </div>
+                {% endif %}
+                <div class="form-outline mb-4">
+                    <input type="password" id="password_repeat" class="form-control" name="password_repeat"/>
+                    <label class="form-label" for="password_repeat">Повторите новый пароль</label>
+                </div>
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-primary btn-block mb-4" type="submit">Сменить пароль</button>
+                {% if change_success %}
+                <div class="alert alert-success my-3">
+                    Пароль был изменён
+                </div>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+    {% csrf_token %}
+</div>
+{% endblock %}
