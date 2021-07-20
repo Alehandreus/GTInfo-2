@@ -13,6 +13,9 @@
         </div>
         <div class="col-md-4 col-sm-12 ms-1 me-1 text-decoration-none text-dark">
             <h3 class="text-center"> Текущие игры </h3>
+            {% csrf_token %}
+            <p class="text-center">Пусто</p>
+
 
 
         </div>
@@ -20,14 +23,30 @@
 </div>
 <script>
 
-function getRandomColor(leng) {
-        var letters = '0123456789ABCDEF'.split('');
-        var color = '#';
-        for (var i = 0; i < leng; i++ ) {
-            color += letters[Math.floor(Math.random() * 16)];
-        }
-        return color;
-    }
+var tracked_list;
+
+function get_tracked_list() {
+    var csrf_token_value = document.getElementsByName("csrfmiddlewaretoken")[0].value;
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/get_tracked/', false);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onreadystatechange = function() {
+            if (xhr.status === 200) {
+                //console.log(xhr.responseText);
+            }
+            else {
+                console.log('Request failed.  Returned status of ' + xhr.status);
+                if (JSON.parse(xhr.responseText).status == "error") {
+                    console.log("Произошла ошибка при попытке получить список отслеживаемых пользователей.");
+                    throw 'Произошла ошибка при попытке получить список отслеживаемых пользователей.';
+                }
+            }
+    };
+    xhr.send(encodeURI('csrfmiddlewaretoken='+csrf_token_value));
+    return JSON.parse((xhr.response))["users"];
+}
+tracked_list = get_tracked_list();
+console.log(tracked_list);
 
 var ctx = document.getElementById('myChart');
 var chart = new Chart(ctx, {
