@@ -44,6 +44,18 @@ function add_user(id) {
                 var tooManyUsersModal = document.getElementById('tooManyUsersModal');
                 var modal = new mdb.Modal(tooManyUsersModal);
                 modal.show();
+            } else if (JSON.parse(xhr.responseText).status == "InvalidID") {
+                var invalidIDModal = document.getElementById('invalidIDModal');
+                var modal = new mdb.Modal(invalidIDModal);
+                modal.show();
+            } else if (JSON.parse(xhr.responseText).status == "PrivateProfile") {
+                var privateProfileModal = document.getElementById('privateProfileModal');
+                var modal = new mdb.Modal(privateProfileModal);
+                modal.show();
+            } else if (JSON.parse(xhr.responseText).status == "UserAlreadyAdded") {
+                var userAlreadyAddedModal = document.getElementById('userAlreadyAddedModal');
+                var modal = new mdb.Modal(userAlreadyAddedModal);
+                modal.show();
             }
         }
     };
